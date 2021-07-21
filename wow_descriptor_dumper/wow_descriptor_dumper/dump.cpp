@@ -231,3 +231,107 @@ void dump_dynamic_object_descriptors() {
 
 	printf("\n");
 }
+
+void dump_corpse_descriptors() {
+	static std::string last_known_descriptor = "m_customDisplayOption";
+
+	uint64_t dynamic_object_desc_start_addr = GAME_BASE_ADDRESS + CORPSE_DESCRIPTORS_START;
+	RawDescriptor* dynamic_object_descriptors = (RawDescriptor*)dynamic_object_desc_start_addr;
+
+	printf("Corpse Descriptors\n");
+	uint64_t current_pos = OBJECT_DESCRIPTORS_END_POS;
+
+	while (true) {
+		RawDescriptor desc = *dynamic_object_descriptors;
+		std::string name = desc.name;
+
+		printf("0x%08llX %s\n", current_pos, name.c_str());
+
+		current_pos += desc.size * 4;
+		dynamic_object_descriptors = dynamic_object_descriptors + desc.size;
+
+		if (name == last_known_descriptor) {
+			break;
+		}
+	}
+
+	printf("\n");
+}
+
+void dump_area_trigger_descriptors() {
+	static std::string last_known_descriptor = "m_creatingEffectGUID";
+
+	uint64_t dynamic_object_desc_start_addr = GAME_BASE_ADDRESS + AREA_TRIGGER_DESCRIPTORS_START;
+	RawDescriptor* dynamic_object_descriptors = (RawDescriptor*)dynamic_object_desc_start_addr;
+
+	printf("AreaTrigger Descriptors\n");
+	uint64_t current_pos = OBJECT_DESCRIPTORS_END_POS;
+
+	while (true) {
+		RawDescriptor desc = *dynamic_object_descriptors;
+		std::string name = desc.name;
+
+		printf("0x%08llX %s\n", current_pos, name.c_str());
+
+		current_pos += desc.size * 4;
+		dynamic_object_descriptors = dynamic_object_descriptors + desc.size;
+
+		if (name == last_known_descriptor) {
+			break;
+		}
+	}
+
+	printf("\n");
+}
+
+void dump_scene_object_descriptors() {
+	static std::string last_known_descriptor = "m_sceneType";
+
+	uint64_t dynamic_object_desc_start_addr = GAME_BASE_ADDRESS + SCENE_OBJECT_DESCRIPTORS_START;
+	RawDescriptor* dynamic_object_descriptors = (RawDescriptor*)dynamic_object_desc_start_addr;
+
+	printf("SceneObject Descriptors\n");
+	uint64_t current_pos = OBJECT_DESCRIPTORS_END_POS;
+
+	while (true) {
+		RawDescriptor desc = *dynamic_object_descriptors;
+		std::string name = desc.name;
+
+		printf("0x%08llX %s\n", current_pos, name.c_str());
+
+		current_pos += desc.size * 4;
+		dynamic_object_descriptors = dynamic_object_descriptors + desc.size;
+
+		if (name == last_known_descriptor) {
+			break;
+		}
+	}
+
+	printf("\n");
+}
+
+void dump_conversation_data_descriptors() {
+	static std::string last_known_descriptor = "m_lastLineEndTime";
+
+	uint64_t dynamic_object_desc_start_addr = GAME_BASE_ADDRESS + CONVERSATION_DATA_DESCRIPTORS_START;
+	RawDescriptor* dynamic_object_descriptors = (RawDescriptor*)dynamic_object_desc_start_addr;
+
+	printf("ConversationData Descriptors\n");
+	uint64_t current_pos = OBJECT_DESCRIPTORS_END_POS;
+
+	while (true) {
+		RawDescriptor desc = *dynamic_object_descriptors;
+		std::string name = desc.name;
+
+		printf("0x%08llX %s\n", current_pos, name.c_str());
+
+		current_pos += desc.size * 4;
+		dynamic_object_descriptors = dynamic_object_descriptors + desc.size;
+
+		if (name == last_known_descriptor) {
+			break;
+		}
+	}
+
+	printf("\n");
+}
